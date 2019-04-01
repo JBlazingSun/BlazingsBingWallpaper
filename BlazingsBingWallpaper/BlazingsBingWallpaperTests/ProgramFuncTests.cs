@@ -18,8 +18,20 @@ namespace BlazingsBingWallpaper.Tests
         {
             var programFunc = new ProgramFunc();
             var apiIamgeUrl = programFunc.GetIamgeUrl(new ResourcesMy().getApiUrl);
-            var bingImageApi = JsonConvert.DeserializeObject<bingImageApi>(apiIamgeUrl);
-            Assert.That(bingImageApi, Does.Contain("orthMale_1920x1080"));
+            var bingImageRoot = (BingImageRoot)JsonConvert.DeserializeObject(apiIamgeUrl, typeof(BingImageRoot));
+
+            Assert.That(bingImageRoot?.images?[0].url , Does.Contain(@"orthMale_1920x1080"));
+        }
+
+
+
+        public class address
+
+        {
+
+            public string city;
+
+            public string province;
         }
     }
 }

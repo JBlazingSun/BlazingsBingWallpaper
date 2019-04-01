@@ -25,8 +25,7 @@ namespace BlazingsBingWallpaper
             string imageUrl= "";
             var Client = new WebClient();
             var Bytes = Client.DownloadData(getUrl);
-            imageUrl = Encoding.ASCII.GetString(Bytes);
-
+            imageUrl = Encoding.UTF8.GetString(Bytes);
             return imageUrl;
         }
 

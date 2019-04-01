@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Mime;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -12,8 +13,6 @@ namespace BlazingsBingWallpaper
 {
     public class ProgramFunc
     {
-        string imageApi = "bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
-
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
         //以拉伸方式显示墙纸
@@ -21,9 +20,12 @@ namespace BlazingsBingWallpaper
         {
             
         }
-        public string GetIamgeUrl()
+        public string GetIamgeUrl(string getUrl)
         {
-            string imageUrl= "https://cn.bing.com"; 
+            string imageUrl= "";
+            var Client = new WebClient();
+            var Bytes = Client.DownloadData(getUrl);
+            imageUrl = Encoding.ASCII.GetString(Bytes);
 
             return imageUrl;
         }

@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlazingsBingWallpaper.AppJ.Model
+﻿namespace BlazingsBingWallpaper.AppJ.Model
 {
-    class ImageApi
+    public class bingImageApi
     {
-
         public class Rootobject
         {
             public Image[] images { get; set; }
@@ -42,6 +35,5 @@ namespace BlazingsBingWallpaper.AppJ.Model
             public int bot { get; set; }
             public object[] hs { get; set; }
         }
-
     }
 }

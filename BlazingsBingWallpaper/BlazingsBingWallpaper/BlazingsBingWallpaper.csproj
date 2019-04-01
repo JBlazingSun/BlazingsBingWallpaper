@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppJ\Model\ImageApi.cs" />
+    <Compile Include="AppJ\Model\ResourcesMy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramFunc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

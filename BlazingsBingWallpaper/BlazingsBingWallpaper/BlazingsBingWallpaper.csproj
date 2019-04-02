@@ -57,16 +57,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppJ\Model\ImageApi.cs" />
-    <Compile Include="AppJ\Model\ResourcesMy.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="ProgramFunc.cs" />
+    <Compile Include="AppJ\Resources\ResourcesMy.cs" />
+    <Compile Include="AppJ\Program\Program.cs" />
+    <Compile Include="AppJ\Program\Service\ProgramFunc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="AppJ\Program\Repository\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

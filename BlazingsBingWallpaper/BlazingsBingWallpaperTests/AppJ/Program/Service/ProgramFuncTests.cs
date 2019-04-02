@@ -29,13 +29,19 @@ namespace BlazingsBingWallpaper.AppJ.Program.Service.Tests
         {
             var programFunc = GetPrivateMethod(ProgramFunc.GetInstance(), @"GetImageUrl");
             var apiIamgeUrl = programFunc.Invoke(ProgramFunc.GetInstance(), new object[] { ResourcesMy.apiUrl });
-            var bingImageRoot = (BingImageRoot)JsonConvert.DeserializeObject((string)apiIamgeUrl, typeof(BingImageRoot));
-            Assert.That(bingImageRoot?.images?[0].url, Does.Contain(@"orthMale_1920x1080"));
+            Assert.That(apiIamgeUrl, Does.Contain(@"orthMale_1920x1080"));
         }
         [Test()]
         public void setWallpaperTest()
         {
-            Assert.Fail();
+            var programFunc = ProgramFunc.GetInstance();
+            programFunc.setWallpaper(@"F:\2019年4月1日.jpg");
+        }
+        [Test()]
+        public void setWallpaperTest2()
+        {
+            var programFunc = ProgramFunc.GetInstance();
+            programFunc.setWallpaper(@"F:\2019年4月2日.jpg");
         }
     }
 }

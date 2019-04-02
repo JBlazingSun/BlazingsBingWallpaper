@@ -6,6 +6,7 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using BlazingsBingWallpaper.AppJ.Model;
+using Newtonsoft.Json;
 
 namespace BlazingsBingWallpaper.AppJ.Program.Service
 {
@@ -32,6 +33,8 @@ namespace BlazingsBingWallpaper.AppJ.Program.Service
             var Client = new WebClient();
             var Bytes = Client.DownloadData(getUrl);
             imageUrl = Encoding.UTF8.GetString(Bytes);
+            var bingImageRoot = (BingImageRoot)JsonConvert.DeserializeObject(imageUrl, typeof(BingImageRoot));
+            imageUrl = bingImageRoot.images[0].url;
             return imageUrl;
         }
 
@@ -58,6 +61,7 @@ namespace BlazingsBingWallpaper.AppJ.Program.Service
             if (File.Exists(Path))
             {
                 SystemParametersInfo(20, 0, Path, 0x2); // 0x1 | 0x2 
+                
             }
         }
     }

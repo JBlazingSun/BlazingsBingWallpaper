@@ -3,8 +3,10 @@ using System.Globalization;
 using System.IO;
 using System.Media;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows.Forms;
 using BlazingsBingWallpaper.AppJ.Model;
 using Newtonsoft.Json;
 
@@ -20,12 +22,6 @@ namespace BlazingsBingWallpaper.AppJ.Program.Service
         public static ProgramFunc GetInstance()
         {
             return programFunc;
-        }
-
-        //以拉伸方式显示墙纸
-        public void menuItemStretch_Click(object sender, EventArgs e)
-        {
-            
         }
         private string GetImageUrl(string getUrl)
         {
@@ -43,12 +39,17 @@ namespace BlazingsBingWallpaper.AppJ.Program.Service
             return bingDomain + GetImageUrl(ResourcesMy.apiUrl);
         }
 
-        public static void testFunc()
+        public bool DownloadFile(string fileUrl,string localFileName)
         {
+            var fileLocalPath = Path.Combine(ResourcesMy.tempFoder, localFileName);
             WebClient wc = new WebClient();
-            wc.DownloadFile(new Uri("https://cn.bing.com/th?id=OHR.Uranus_ZH-CN9689723562_1920x1080.jpg&rf=NorthMale_1920x1080.jpg", UriKind.Absolute), "F:\\" + DateTime.Today.ToLongDateString() + ".jpg");
+            wc.DownloadFile(new Uri(fileUrl, UriKind.Absolute), fileLocalPath);
+            if (File.Exists(fileLocalPath))
+            {
+                return true;
+            }
+            return false;
         }
-        public string strPath = "";
         [DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
         public static extern int SystemParametersInfo(
             int uAction,
@@ -63,6 +64,26 @@ namespace BlazingsBingWallpaper.AppJ.Program.Service
                 SystemParametersInfo(20, 0, Path, 0x2); // 0x1 | 0x2 
                 
             }
+        }
+
+        public bool TestNetWork(string url)
+        {
+            Ping ping = new Ping();
+            try
+            {
+                int timeout = 3; //设置超时时间
+                PingReply pr = ping.Send(url, timeout);
+                if (pr.Status == IPStatus.Success)
+                    return true;
+                if (pr.Status == IPStatus.TimedOut)
+                    return false;
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("没有网络连接");
+            }
+            return false;
         }
     }
 }

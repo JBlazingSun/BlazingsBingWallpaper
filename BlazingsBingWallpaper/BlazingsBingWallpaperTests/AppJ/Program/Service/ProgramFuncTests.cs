@@ -2,7 +2,9 @@
 using BlazingsBingWallpaper.AppJ.Program.Service;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,27 @@ namespace BlazingsBingWallpaper.AppJ.Program.Service.Tests
     [TestFixture()]
     public class ProgramFuncTests
     {
+        private ProgramFunc programFunc;
+        private string localImageFileName;
+        public ProgramFuncTests()
+        {
+            programFunc = ProgramFunc.GetInstance();
+            localImageFileName = DateTime.Today.ToLongDateString() + ".jpg";
+        }
+        [OneTimeTearDown]
+        public void MyOneTimeTearDown()
+        {
+            var fileLocalPath = Path.Combine(ResourcesMy.tempFoder, localImageFileName);
+            if (File.Exists(fileLocalPath))
+            {
+                File.Delete(fileLocalPath);
+                if (File.Exists(fileLocalPath))
+                {
+                    Assert.Fail("删除文件失败");
+                }
+            }
+        }
+
         //如果要测试私有静态方法，则需要修改 BindingFlags 。 例子只用于实例方法
         private MethodInfo GetPrivateMethod(object methodClass, string methodName)
         {
@@ -32,16 +55,32 @@ namespace BlazingsBingWallpaper.AppJ.Program.Service.Tests
             Assert.That(apiIamgeUrl, Does.Contain(@"orthMale_1920x1080"));
         }
         [Test()]
+        [Ignore("")]
         public void setWallpaperTest()
         {
-            var programFunc = ProgramFunc.GetInstance();
-            programFunc.setWallpaper(@"F:\2019年4月1日.jpg");
+            programFunc.setWallpaper(@"F:\1.jpg");
         }
         [Test()]
+        [Ignore("")]
         public void setWallpaperTest2()
         {
-            var programFunc = ProgramFunc.GetInstance();
-            programFunc.setWallpaper(@"F:\2019年4月2日.jpg");
+            programFunc.setWallpaper(@"F:\2.jpg");
         }
+
+        [Test()]
+        public void TestNetWorkTest()
+        {
+            var testNetWork = programFunc.TestNetWork(@"www.baidu.com");
+            Assert.That(testNetWork, Is.True);
+        }
+
+        [Test(),Order(1)]
+        public void DownloadFileTest()
+        {
+            var imageAddr = programFunc.GetImageAddr(ResourcesMy.cnBingCom);
+            var condition  = programFunc.DownloadFile(imageAddr, localImageFileName);
+            Assert.That(condition,Is.True);
+        }
+        
     }
 }

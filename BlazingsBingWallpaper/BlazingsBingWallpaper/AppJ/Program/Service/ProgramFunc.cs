@@ -62,7 +62,6 @@ namespace BlazingsBingWallpaper.AppJ.Program.Service
             if (File.Exists(Path))
             {
                 SystemParametersInfo(20, 0, Path, 0x2); // 0x1 | 0x2 
-                
             }
         }
 

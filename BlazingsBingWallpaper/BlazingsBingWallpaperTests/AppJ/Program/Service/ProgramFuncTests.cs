@@ -74,7 +74,7 @@ namespace BlazingsBingWallpaper.AppJ.Program.Service.Tests
             Assert.That(testNetWork, Is.True);
         }
 
-        [Test(),Order(1)]
+        [Test]
         public void DownloadFileTest()
         {
             var imageAddr = programFunc.GetImageAddr(ResourcesMy.cnBingCom);

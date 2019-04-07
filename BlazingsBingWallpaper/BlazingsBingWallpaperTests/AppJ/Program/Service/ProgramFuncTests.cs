@@ -21,7 +21,7 @@ namespace BlazingsBingWallpaper.AppJ.Program.Service.Tests
         public ProgramFuncTests()
         {
             programFunc = ProgramFunc.GetInstance();
-            localImageFileName = DateTime.Today.ToLongDateString() + ".jpg";
+            localImageFileName = DateTime.Now.ToLongDateString()+Guid.NewGuid() + ".jpg";
         }
         [OneTimeTearDown]
         public void MyOneTimeTearDown()
@@ -52,7 +52,7 @@ namespace BlazingsBingWallpaper.AppJ.Program.Service.Tests
         {
             var programFunc = GetPrivateMethod(ProgramFunc.GetInstance(), @"GetImageUrl");
             var apiIamgeUrl = programFunc.Invoke(ProgramFunc.GetInstance(), new object[] { ResourcesMy.apiUrl });
-            Assert.That(apiIamgeUrl, Does.Contain(@"orthMale_1920x1080"));
+            Assert.That(apiIamgeUrl, Does.Contain(@"1920x1080"));
         }
         [Test()]
         [Ignore("")]

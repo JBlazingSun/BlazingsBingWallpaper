@@ -23,6 +23,11 @@ namespace BlazingsBingWallpaper.AppJ.Program.Service
         {
             return programFunc;
         }
+
+        public void ConsoleWriteLineShow(string showStr)
+        {
+            //Console.Write(showStr);
+        }
         private string GetImageUrl(string getUrl)
         {
             string imageUrl= "";
@@ -63,6 +68,25 @@ namespace BlazingsBingWallpaper.AppJ.Program.Service
             {
                 SystemParametersInfo(20, 0, Path, 0x2); // 0x1 | 0x2 
             }
+        }
+
+        public bool DeleteDownLoadFile(string filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+                if (File.Exists(filePath))
+                {
+                    MessageBox.Show("要删除文件失败");
+                }
+            }
+            else
+            {
+                MessageBox.Show("要删除的文件不存在");
+
+            }
+
+            return false;
         }
 
         public bool TestNetWork(string url)

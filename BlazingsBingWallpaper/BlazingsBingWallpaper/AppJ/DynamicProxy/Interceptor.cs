@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Castle.DynamicProxy;
 
-namespace BlazingsBingWallpaper.AppJ.Resources.AOP
+namespace BlazingsBingWallpaper.AppJ.DynamicProxy
 {
     [Serializable]
     public class Interceptor : IInterceptor

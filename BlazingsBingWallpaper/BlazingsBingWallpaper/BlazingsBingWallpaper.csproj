@@ -75,7 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppJ\Model\ImageApi.cs" />
-    <Compile Include="AppJ\Resources\AOP\Interceptor.cs" />
+    <Compile Include="AppJ\DynamicProxy\Interceptor.cs" />
     <Compile Include="AppJ\Resources\ResourcesMy.cs" />
     <Compile Include="AppJ\Program\Program.cs" />
     <Compile Include="AppJ\Program\Service\ProgramFunc.cs" />

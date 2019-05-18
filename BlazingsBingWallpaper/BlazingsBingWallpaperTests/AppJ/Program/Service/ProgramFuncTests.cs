@@ -70,7 +70,7 @@ namespace BlazingsBingWallpaper.AppJ.Program.Service.Tests
         [Test()]
         public void TestNetWorkTest()
         {
-            var testNetWork = programFunc.TestNetWork(@"www.baidu.com");
+            var testNetWork = programFunc.TestNetWork(@"114.114.114.114");
             Assert.That(testNetWork, Is.True);
         }
 

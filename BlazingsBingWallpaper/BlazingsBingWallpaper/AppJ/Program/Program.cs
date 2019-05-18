@@ -18,15 +18,15 @@ namespace BlazingsBingWallpaper
         {
             var programFunc = ProgramFunc.GetInstance();
 
-            if (!programFunc.TestNetWork(@"www.qq.com"))
-            {
-                MessageBox.Show("网络连接失败,请重新打开程序");
-                return;
-            }
-            else
-            {
-                programFunc.ConsoleWriteLineShow("网络正常");
-            }
+            //if (!programFunc.TestNetWork(@"114.114.114.114"))
+            //{
+            //    MessageBox.Show("网络连接失败,请重新打开程序");
+            //    return;
+            //}
+            //else
+            //{
+            //    programFunc.ConsoleWriteLineShow("网络正常");
+            //}
 
             var imageAddr = programFunc.GetImageAddr(ResourcesMy.cnBingCom);
             programFunc.ConsoleWriteLineShow(imageAddr);

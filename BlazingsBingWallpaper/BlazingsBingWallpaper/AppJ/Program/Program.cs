@@ -16,6 +16,7 @@ namespace BlazingsBingWallpaper
     {
         static void Main(string[] args)
         {
+            ConsoleHelper.hideConsole();
             var programFunc = ProgramFunc.GetInstance();
 
             //if (!programFunc.TestNetWork(@"114.114.114.114"))
